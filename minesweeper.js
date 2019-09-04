@@ -40,7 +40,7 @@ var board = {
   },
   {
     row: 2,
-    col: 1, isMine: false,
+    col: 1, isMine: true,
     hidden: true
   },
   {
@@ -52,8 +52,16 @@ var board = {
 
 }
 
-function startGame() {
+function startGame(arr) {
   // Don't remove this function call: it makes the game work!
+  for (i = 0; i < board.cells.length; i++) {
+    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
+  }
+
+
+
+
+
   lib.initBoard()
 }
 
