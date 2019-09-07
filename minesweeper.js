@@ -1,8 +1,36 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 var sound = document.getElementById("sound");
-
 document.addEventListener("click", playSound);
+
+var endSound = document.getElementById("soundEnd");
+document.addEventListener("contextmenu", playEndSound);
+
+var winSound = document.getElementById("win");
+
+var loseSound = document.getElementById("lose");
+
+function playLoseSound() {
+  var loseSoundFlag = true;
+  if (loseSoundFlag) {
+    loseSound.pause();
+    loseSound.currentTime = 0;
+    loseSound.play();
+    loseSoundFlag = false;
+  }
+}
+
+function playWinSound() {
+  var winSoundFlag = true;
+  if (winSoundFlag) {
+    winSound.pause();
+    winSound.currentTime = 0;
+    winSound.play();
+    winSoundFlag = false;
+  }
+}
+
+
 
 function playSound() {
   var soundFlag = true;
@@ -11,6 +39,17 @@ function playSound() {
     sound.currentTime = 0;
     sound.play();
     soundFlag = false;
+  }
+}
+
+
+function playEndSound() {
+  var endSoundFlag = true;
+  if (endSoundFlag) {
+    endSound.pause();
+    endSound.currentTime = 0;
+    endSound.play();
+    endSoundFlag = false;
   }
 }
 
@@ -59,7 +98,8 @@ function checkForWin() {
       return
     }
   }
-  lib.displayMessage('You win!')
+  lib.displayMessage('You win!');
+  playWinSound();
 
 }
 
