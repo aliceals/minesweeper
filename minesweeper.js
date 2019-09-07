@@ -1,10 +1,23 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
+var sound = document.getElementById("sound");
+
+document.addEventListener("click", playSound);
+
+function playSound() {
+  var soundFlag = true;
+  if (soundFlag) {
+    sound.pause();
+    sound.currentTime = 0;
+    sound.play();
+    soundFlag = false;
+  }
+}
+
 // Define your `board` object here!
 var board = {
   cells: []
 }
-
 
 
 function createBoard() {
@@ -20,6 +33,7 @@ function createBoard() {
 function startGame() {
 
   createBoard(3)
+
   // Don't remove this function call: it makes the game work!
   for (i = 0; i < 36; i++) {
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
@@ -28,11 +42,8 @@ function startGame() {
   document.addEventListener("click", checkForWin);
   document.addEventListener("contextmenu", checkForWin);
 
-
-
   lib.initBoard()
 }
-
 
 
 // Define this function to look for a win condition:
